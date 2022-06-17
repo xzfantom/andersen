@@ -1,4 +1,4 @@
-const errorMessage = 'Ошибка!';
+const ERROR_MESSAGE = 'Ошибка!';
 ////////////////////////////////////////////
 //                Task 1                  //
 ////////////////////////////////////////////
@@ -53,12 +53,12 @@ const makeObjectDeepCopy = function (obj) {
 
 const selectFromInterval = function (array, intervalStart, intervalEnd) {
   if (!Array.isArray(array) || typeof intervalStart !== 'number' || typeof intervalEnd !== 'number') {
-    throw new Error(errorMessage);
+    throw new Error(ERROR_MESSAGE);
   }
   let [start, end] = intervalStart < intervalEnd ? [intervalStart, intervalEnd] : [intervalEnd, intervalStart];
   return array.filter((value) => {
     if (typeof value !== 'number') {
-      throw new Error(errorMessage);
+      throw new Error(ERROR_MESSAGE);
     }
     return value >= start && value <= end;
   });
@@ -76,7 +76,7 @@ myIterable[Symbol.iterator] = function () {
     end: this.to,
     next() {
       if (typeof this.current !== 'number' || typeof this.end !== 'number' || this.start > this.end) {
-        throw new Error(errorMessage);
+        throw new Error(ERROR_MESSAGE);
       }
       if (this.current <= this.end) {
         return {

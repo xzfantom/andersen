@@ -4,7 +4,7 @@ const ERROR_MESSAGE = 'Ошибка!';
 ////////////////////////////////////////////
 
 const copyArray = function (array) {
-  let result = new Array(array.length);
+  let result = [];
   for (let i = 0; i < array.length; i++) {
     result[i] = makeObjectDeepCopy(array[i]);
   }

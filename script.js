@@ -19,12 +19,7 @@
 //
 // *Дополнения к задаче:*
 // Чтобы не усложнять задачу договоримся что последний вызов всегда должен быть
-// либо с пустым значением либо с невалидным но невалидное значение может нам
-// попасться и раньше, оно не обязательно всегда будет в последнем вызове
-//
-// Можно уточнить, должна ли функция работать, если ее вызвать вот так
-// console.log(concatStrings('first')(null)('second')('third')()); ?
-// Да, эта функция вернет строку "first"
+// либо с пустым значением либо с невалидным
 //
 // *Примеры:*
 // Вызываем функцию: concatStrings('first')('second')('third')()
@@ -54,6 +49,33 @@ const concatStrings = function (str, separator) {
       acc = `${acc}${sep}${newStr}`;
     } else {
       return acc;
+    }
+    if (typeof newSep === 'string') {
+      sep = newSep;
+    }
+    return result;
+  }
+  return result;
+}
+
+// Вариант с остановкой конкатенации при невалидном вызове:
+const concatStrings2 = function (str, separator) {
+  let isValid = true;
+  if (typeof str === 'undefined') {
+    return '';
+  }
+  let acc = str;
+  let sep = '';
+  if (typeof separator === 'string') {
+    sep = separator;
+  }
+  const result = function (newStr, newSep) {
+    if (isValid && typeof newStr === 'string') {
+      acc = `${acc}${sep}${newStr}`;
+    } else if (newStr === undefined) {
+      return acc;
+    } else {
+      isValid = false;
     }
     if (typeof newSep === 'string') {
       sep = newSep;

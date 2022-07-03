@@ -1,13 +1,13 @@
 class Car {
-  #brand; //(строка от 1 до 50 символов включительно)
-  #model; //(строка от 1 до 50 символов включительно)
-  #yearOfManufacturing; //(число от 1900 до текущего года включительно)
-  #maxSpeed; //(число от 100 до 300 км/ч)
-  #maxFuelVolume; //(число в литрах от 5 до 20)
-  #fuelConsumption; //(число в л/100км)
-  #currentFuelVolume; //(число в литрах, по умолчанию 0)
-  #isStarted; //(логический тип, по умолчанию false)
-  #mileage; //(число в километрах, по умолчанию 0)
+  #brand;
+  #model;
+  #yearOfManufacturing;
+  #maxSpeed;
+  #maxFuelVolume;
+  #fuelConsumption;
+  #currentFuelVolume;
+  #isStarted;
+  #mileage;
 
   constructor(brand,
     model,
@@ -36,7 +36,7 @@ class Car {
 
   set brand(brand) {
     if (!this.constructor.#checkString(brand, 1, 50)) {
-      throw new Error('Wrong brand name!');
+      throw new Error('Неверное им бренда');
     }
     this.#brand = brand;
   }
@@ -47,7 +47,7 @@ class Car {
 
   set model(model) {
     if (!this.constructor.#checkString(model, 1, 50)) {
-      throw new Error('Wrong model name!');
+      throw new Error('Неверное наименование модели');
     }
     this.#model = model;
   }
@@ -59,7 +59,7 @@ class Car {
   set yearOfManufacturing(yearOfManufacturing) {
     let currentYear = new Date().getFullYear();
     if (!this.constructor.#checkInt(yearOfManufacturing, 1900, currentYear)) {
-      throw new Error('Wrong manufacturing year!');
+      throw new Error('Неверная дата производства');
     }
     this.#yearOfManufacturing = yearOfManufacturing;
   }
@@ -70,7 +70,7 @@ class Car {
 
   set maxSpeed(maxSpeed) {
     if (!this.constructor.#checkNumber(maxSpeed, 100, 300)) {
-      throw new Error('Wrong maximum speed!');
+      throw new Error('Неверная максимальная скорость');
     }
     this.#maxSpeed = maxSpeed;
   }
@@ -81,7 +81,7 @@ class Car {
 
   set maxFuelVolume(maxFuelVolume) {
     if (!this.constructor.#checkNumber(maxFuelVolume, 5, 20)) {
-      throw new Error('Wrong maximum fuel volume!');
+      throw new Error('Неверный максимальный объём топлива');
     }
     this.#maxFuelVolume = maxFuelVolume;
   }
@@ -92,7 +92,7 @@ class Car {
 
   set fuelConsumption(fuelConsumption) {
     if (!this.constructor.#checkNumber(fuelConsumption, 0)) {
-      throw new Error('Wrong fuel consumption!');
+      throw new Error('Неверное потребление топлива');
     }
     this.#fuelConsumption = fuelConsumption;
   }
@@ -117,7 +117,7 @@ class Car {
   }
 
   shutDownEngine() {
-    if (this.#isStarted) {
+    if (!this.#isStarted) {
       throw new Error('Машина ещё не заведена');
     }
     this.#isStarted = false;
@@ -131,7 +131,22 @@ class Car {
   }
 
   drive(speed, time) {
-
+    if (!this.constructor.#checkNumber(speed, 0) || speed === 0) {
+      throw new Error('Неверная скорость');
+    }
+    if (speed > this.#maxSpeed) {
+      throw new Error('Машина не может ехать так быстро');
+    }
+    if (!this.constructor.#checkNumber(time, 0) || time === 0) {
+      throw new Error('Неверное количество часов');
+    }
+    if (!this.isStarted) {
+      throw new Error('Машина должна быть заведена, чтобы ехать');
+    }
+    let distance = speed * time;
+    let fuelConsumed = distance / 100 * this.#fuelConsumption;
+    this.#consumeFuel(fuelConsumed);
+    this.#addMileage(distance);
   }
 
   #setCurrentFuelVolume(currentFuelVolume) {
@@ -146,16 +161,29 @@ class Car {
 
   #setIsStarted(isStarted) {
     if (typeof isStarted !== 'boolean') {
-      throw new Error('Wrong parameter isStarted!');
+      throw new Error('Неверный параметр isStarted');
     }
     this.#isStarted = isStarted;
   }
 
   #setMileage(mileage) {
     if (!this.constructor.#checkNumber(mileage, 0)) {
-      throw new Error('Wrong mileage!');
+      throw new Error('Неверное расстояние');
     }
     this.#mileage = mileage;
+  }
+
+  #consumeFuel(volume) {
+    let fuelLeft = this.#currentFuelVolume - volume;
+    if (fuelLeft < 0) {
+      throw new Error('Недостаточно топлива');
+    }
+    this.#setCurrentFuelVolume(fuelLeft);
+  }
+
+  #addMileage(mileage) {
+    let newMileage = this.#mileage + mileage;
+    this.#setMileage(newMileage);
   }
 
   static #checkString(value, min, max) {
@@ -171,4 +199,4 @@ class Car {
   }
 }
 
-const car = new Car('Toyota', 'Prado', 1997, 280, 20, 1);
+module.exports = { Car };

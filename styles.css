@@ -1,0 +1,73 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: Gotham Rounded, sans-serif;
+  font-weight: normal;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.clear-key {
+  background-color: rgba(248, 0, 12, 0.75);  
+}
+
+.clear-key:hover {
+  background-color: rgba(248, 0, 55, .9);
+}
+
+.result-key {
+  grid-row: span 2;
+  background-color: rgba(74, 0, 248, 0.75);
+}
+
+.result-key:hover {
+  /*grid-row: span 2;*/
+  background-color: rgba(74, 0, 248, 0.9);
+}
+
+.num-key {
+  background-color: rgba(0, 99, 248, 0.75);
+}
+
+.num-key:hover {
+  background-color: rgba(0, 99, 255, .9);
+}
+
+.numpad {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+.numpad > button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid white;
+  outline: none;
+}
+
+.screen {
+  grid-column: 1 / -1;
+  background-color: rgba(0, 0, 0, .75);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+  color: white;
+  font-size: 2.5rem;
+  text-align: right;
+}

@@ -3,6 +3,7 @@ const MAX_DIGITS = 14;
 const MAX_DECIMAL = 8;
 
 export class Calculator {
+
   constructor() {
     this.currentValue = '';
     this.previousValue = '';
@@ -42,15 +43,12 @@ export class Calculator {
 
   setOperation = (value) => {
     if (this.previousValue === '') {
-      this.operation = value;
       this.previousValue = this.currentValue;
       this.currentValue = '';
-    } else if (this.currentValue === '') {
-      this.operation = value;
-    } else {
+    } else if (this.currentValue !== '') {
       this.makeResult();
-      this.operation = value;
     }
+    this.operation = value;
   }
 
   makeResult = () => {
@@ -114,7 +112,6 @@ export class Calculator {
   }
 
   multiply = () => {
-    console.log(this.previousValue, parseFloat(this.previousValue), this.currentValue, parseFloat(this.currentValue));
     return parseFloat(this.previousValue) * parseFloat(this.currentValue);
   }
 

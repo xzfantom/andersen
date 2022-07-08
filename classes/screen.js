@@ -1,4 +1,5 @@
 export class Screen {
+
   constructor() {
     this.value = 0;
     this.input;

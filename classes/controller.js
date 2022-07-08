@@ -1,4 +1,5 @@
 export class Controller {
+
   constructor(model, view) {
     this.model = model;
     this.view = view;
@@ -11,7 +12,6 @@ export class Controller {
     if (event.target.hasAttribute('data-value')) {
       const type = event.target.getAttribute('data-type');
       const value = event.target.getAttribute('data-value');
-
       switch (type) {
         case 'number':
           this.model.setOperand(value);
@@ -33,7 +33,6 @@ export class Controller {
         default:
           return;
       }
-      console.log(this.model.previousValue, this.model.currentValue, this.model.operation);
     }
   }
 }

@@ -14,14 +14,11 @@ export class View {
   }
 
   init = () => {
-
     this.numPad = document.createElement('div');
     this.numPad.classList.add('numpad');
     this.numPad.appendChild(this.screen.render());
-
     Object.keys(this.config).forEach((key) => {
       let buttonConfig = this.config[key];
-
       if (buttonConfig.type === 'number') {
         this.numPad.appendChild(new NumKey(buttonConfig));
       } else if (buttonConfig.type === 'special') {
@@ -31,9 +28,7 @@ export class View {
       } else {
         this.numPad.appendChild(new Button(buttonConfig));
       }
-
     });
-
     this.root.appendChild(this.numPad);
   }
 

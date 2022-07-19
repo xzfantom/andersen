@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '../logo.svg';
 import './App.css';
+import QuestionForm from './QuestionForm';
 
 class App extends React.Component {
 
@@ -8,8 +8,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <h1>Создание анкеты</h1>
         </header>
+        <QuestionForm />
       </div>
     );
   }

@@ -18,21 +18,34 @@ class QuestionForm extends React.Component {
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleInput(name, value) {
     this.setState({ [name]: value })
   }
 
-  handleSubmit(event) {
+  handleSubmit() {
     console.log(this.state);
-    event.preventDefault();
+  }
+
+  handleReset() {
+    this.setState({
+      name: '',
+      secondname: '',
+      birthday: '',
+      phone: '',
+      website: '',
+      about: '',
+      technologystack: '',
+      lastproject: '',
+    });
   }
 
   render() {
     return (
       <div className='QuestionForm'>
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <FormInput id='name' name='Имя' value={this.state.name} onChange={this.handleInput} />
           <FormInput id='secondname' name='Фамилия' value={this.state.secondname} onChange={this.handleInput} />
           <FormInput id='birthday' name='Дата рождения' value={this.state.birthday} onChange={this.handleInput} />
@@ -41,9 +54,9 @@ class QuestionForm extends React.Component {
           <FormTextarea id='about' name='О себе' value={this.state.about} onChange={this.handleInput} />
           <FormTextarea id='technologystack' name='Стек технологий' value={this.state.technologystack} onChange={this.handleInput} />
           <FormTextarea id='lastproject' name='Описание последнего проекта' value={this.state.lastproject} onChange={this.handleInput} />
-          <div>
-            <input type="submit" name="" value="Отмена" />
-            <input type="submit" name="" value="Сохранить" />
+          <div className='buttons'>
+            <input type="button" name="cancel" value="Отмена" onClick={this.handleReset} />
+            <input type="button" name="save" value="Сохранить" onClick={this.handleSubmit} />
           </div>
         </form>
       </div>

@@ -14,7 +14,7 @@ class FormInput extends React.Component {
   render() {
     return (
       <div className='FormInput'>
-        <label for={this.props.id}>{this.props.name}</label>
+        <label htmlFor={this.props.id}>{this.props.name}</label>
         <input
           id={this.props.id}
           placeholder={this.props.name}

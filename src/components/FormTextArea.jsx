@@ -8,14 +8,13 @@ class FormTextarea extends React.Component {
   }
 
   handleChanges(e) {
-    console.log(e);
     this.props.onChange(this.props.id, e.target.value);
   }
 
   render() {
     return (
       <div className='FormTextarea'>
-        <label for={this.props.id}>{this.props.name}</label>
+        <label htmlFor={this.props.id}>{this.props.name}</label>
         <textarea
           id={this.props.id}
           placeholder={this.props.name}

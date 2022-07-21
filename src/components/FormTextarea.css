@@ -1,16 +1,13 @@
 .FormTextarea {
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  width: 500px;
+  padding-top: 10px;
 }
 
 .FormTextarea label {
   display: block;
-  align-self: flex-start;
   text-align: left;
 }
 
 .FormTextarea textarea{
-  width: 500px;
+  width: 100%;
+  background-color: #DCD6F7;
 }

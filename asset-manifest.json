@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/andersen/static/css/main.084ad23a.css",
-    "main.js": "/andersen/static/js/main.5cd9d67b.js",
+    "main.css": "/andersen/static/css/main.0ec285a2.css",
+    "main.js": "/andersen/static/js/main.df776802.js",
     "index.html": "/andersen/index.html",
-    "main.084ad23a.css.map": "/andersen/static/css/main.084ad23a.css.map",
-    "main.5cd9d67b.js.map": "/andersen/static/js/main.5cd9d67b.js.map"
+    "main.0ec285a2.css.map": "/andersen/static/css/main.0ec285a2.css.map",
+    "main.df776802.js.map": "/andersen/static/js/main.df776802.js.map"
   },
   "entrypoints": [
-    "static/css/main.084ad23a.css",
-    "static/js/main.5cd9d67b.js"
+    "static/css/main.0ec285a2.css",
+    "static/js/main.df776802.js"
   ]
 }
